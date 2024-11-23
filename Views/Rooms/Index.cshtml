@@ -1,0 +1,44 @@
+﻿@model List<BookingApp.Models.Entities.Room>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>RoomTitle</th>
+                <th>City</th>
+                <th>Country</th>
+                <th>Price</th>
+                <th>Actions</th> <!-- Added a new column for actions -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var room in Model)
+            {
+                <tr>
+                    <td>@room.ID</td>
+                    <td>@room.RoomTitle</td>
+                    <td>@room.City</td>
+                    <td>@room.Country</td>
+                    <td>@room.Price</td>
+                    <!-- Actions column with Update and Delete buttons -->
+                    <td>
+                        <!-- View Button (will navigate to view page) -->
+                        <a asp-action="ViewRoom" asp-route-id="@room.ID" class="btn btn-info btn-sm" style="margin-right: 5px;">View</a>
+
+                        <!-- Update Button (will navigate to edit page) -->
+                        <a href="@Url.Action("UpdateRoom", "Rooms", new { id = room.ID })" class="btn btn-primary btn-sm" style="margin-right: 5px;">
+                            Update
+                        </a>
+
+                        <!-- Delete Button (form to delete the doctor) -->
+                        <form action="@Url.Action("UpdateRoom", "Rooms", new { id = room.ID })" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this room?');">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a class="btn btn-success" href="@Url.Action("AddRoom", "Rooms")" style="font-weight: 500;">Add New Room</a>
+</div>

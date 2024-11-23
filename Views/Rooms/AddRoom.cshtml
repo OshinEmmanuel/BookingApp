@@ -1,0 +1,43 @@
+﻿@model BookingApp.Models.DTOs.RoomDTO
+<div class="container my-4 p-3" style="max-width: 600px; background-color: #f8f9fa; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <h4 class="text-center text-primary mb-3">Add New Room</h4>
+    <form asp-action="AddRoom">
+        
+        <div class="mb-2">
+            <label asp-for="@Model.RoomType" class="form-label"></label>
+            <input asp-for="@Model.RoomType" class="form-control"/>
+        </div>
+        <div class="mb-2">
+            <label asp-for="@Model.City" class="form-label"></label>
+            <input asp-for="@Model.City" class="form-control" />
+        </div>
+        <div class="mb-2">
+            <label asp-for="@Model.Description" class="form-label"></label>
+            <input asp-for="@Model.Description" class="form-control" />
+        </div>
+        <div class="mb-2">
+            <label asp-for="@Model.Country" class="form-label"></label>
+            <input asp-for="@Model.Country" class="form-control" />
+        </div>
+        <div class="mb-2">
+            <label asp-for="@Model.Price" class="form-label"></label>
+            <input asp-for="@Model.Price" class="form-control" />
+        </div>
+        <div class="mb-2">
+            <label asp-for="@Model.RoomAddress" class="form-label"></label>
+            <input asp-for="@Model.RoomAddress" class="form-control" />
+        </div>
+        <div class="mb-2">
+            <label asp-for="@Model.RoomOwner" class="form-label"></label>
+            <input asp-for="@Model.RoomOwner" class="form-control" />
+        </div>
+        <div class="mb-2">
+            <label asp-for="@Model.RoomTitle" class="form-label"></label>
+            <input asp-for="@Model.RoomTitle" class="form-control" />
+        </div>
+       
+        <div class="text-center mt-3">
+            <button type="submit" class="btn btn-primary px-4" style="background-color: #007bff; border-color: #007bff;">Submit</button>
+        </div>
+    </form>
+</div>
