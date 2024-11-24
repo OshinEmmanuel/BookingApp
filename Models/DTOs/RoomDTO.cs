@@ -1,4 +1,5 @@
 ﻿using BookingApp.Models.Entities;
+using System.Security.Policy;
 
 namespace BookingApp.Models.DTOs
 {
@@ -20,5 +21,7 @@ namespace BookingApp.Models.DTOs
         public RoomType RoomType { get; set; }
 
         public string RoomOwner { get; set; }
+
+        public List <IFormFile> Images { get; set; }
     }
 }

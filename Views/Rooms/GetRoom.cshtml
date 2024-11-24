@@ -1,0 +1,73 @@
+﻿@model BookingApp.Models.Entities.Room
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7 mt-5 d-flex justify-content-center">
+            <!-- Carousel for Room Images -->
+            <div id="roomCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    @if (Model.Images?.Any() == true)
+
+                    {
+                        @for (var i = 0; i < Model.Images.Count; i++)
+
+                        {
+                            <div class="carousel-item @(i == 0 ? "active" : "")">
+                                <img src="~/@Model.Images[i].Url" class="d-block w-100" style="width: 44rem; height: 46rem; border-radius: 0.5rem;" alt="Room Image">
+                            </div>
+                        }
+                    }
+
+                    else
+
+                    {
+                        <div class="carousel-item active">
+                            <img src="/images/no-image-available.png" class="d-block w-100" style="width: 44rem; height: 46rem; border-radius: 0.5rem;" alt="No Image">
+                        </div>
+                    }
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#roomCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#roomCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+            <!-- Room Details -->
+            <div>
+                <div class="mt-4 ms-3">
+                    <h3 style="font-weight: bold">
+                        Room in @Model.City, @Model.Country
+                    </h3>
+                    <h3 class="lead" style="font-weight: 500">@Model.RoomTitle</h3>
+                    <h3 class="lead" style="font-weight: 500">Owned by @Model.RoomOwner</h3>
+                    <br />
+                    <hr />
+                    <h3 style="font-weight: bold">About this place</h3>
+                    <p>@Model.Description</p>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <div class="text-center mt-4">
+        <hr />
+        <br />
+        <p class="h4">
+            <span class="text-warning" style="font-size: 5rem">
+                @Model.Rating &#9733;
+            </span>
+        </p>
+
+        <p style="font-weight: bold; font-size: 1.3rem">Guest favorite</p>
+        <p>
+            This home is in the top 5% of eligible listings based <br />
+            on ratings, reviews, and reliability
+        </p>
+    </div>
+</div>

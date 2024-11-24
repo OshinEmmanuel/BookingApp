@@ -1,43 +1,102 @@
-﻿@model BookingApp.Models.DTOs.RoomDTO
-<div class="container my-4 p-3" style="max-width: 600px; background-color: #f8f9fa; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-    <h4 class="text-center text-primary mb-3">Add New Room</h4>
-    <form asp-action="AddRoom">
-        
-        <div class="mb-2">
-            <label asp-for="@Model.RoomType" class="form-label"></label>
-            <input asp-for="@Model.RoomType" class="form-control"/>
+﻿@using BookingApp.Models.Entities
+@model BookingApp.Models.DTOs.RoomDTO
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Create Room</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-action="AddRoom" asp-controller="Rooms" method="post" enctype="multipart/form-data">
+                        <!-- Room Title -->
+                        <div class="form-group mb-3">
+                            <label asp-for="RoomTitle" class="form-label"></label>
+                            <input asp-for="RoomTitle" class="form-control" placeholder="Enter room title" />
+                            <span asp-validation-for="RoomTitle" class="text-danger"></span>
+                        </div>
+
+                        <!-- Room Address -->
+                        <div class="form-group mb-3">
+                            <label asp-for="RoomAddress" class="form-label"></label>
+                            <input asp-for="RoomAddress" class="form-control" placeholder="Enter room address" />
+                            <span asp-validation-for="RoomAddress" class="text-danger"></span>
+                        </div>
+
+                        <!-- City -->
+                        <div class="form-group mb-3">
+                            <label asp-for="City" class="form-label"></label>
+                            <input asp-for="City" class="form-control" placeholder="Enter city" />
+                            <span asp-validation-for="City" class="text-danger"></span>
+                        </div>
+
+                        <!-- Country -->
+                        <div class="form-group mb-3">
+                            <label asp-for="Country" class="form-label"></label>
+                            <input asp-for="Country" class="form-control" placeholder="Enter country" />
+                            <span asp-validation-for="Country" class="text-danger"></span>
+                        </div>
+
+                        <!-- Price -->
+                        <div class="form-group mb-3">
+                            <label asp-for="Price" class="form-label"></label>
+                            <input asp-for="Price" class="form-control" placeholder="Enter price" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+
+                        <!-- Rating -->
+                        <div class="form-group mb-3">
+                            <label asp-for="Rating" class="form-label"></label>
+                            <input asp-for="Rating" class="form-control" placeholder="Enter rating (0-5)" />
+                            <span asp-validation-for="Rating" class="text-danger"></span>
+                        </div>
+
+                        <!-- Room Type -->
+                        <div class="form-group mb-3">
+                            <label asp-for="RoomType" class="form-label"></label>
+                            <select asp-for="RoomType" class="form-select">
+                                <option value="">Select Room Type</option>
+                                @foreach (var roomType in Enum.GetValues(typeof(RoomType)))
+                                {
+                                    <option value="@roomType">@roomType</option>
+                                }
+                            </select>
+                            <span asp-validation-for="RoomType" class="text-danger"></span>
+                        </div>
+
+                        <!-- Room Owner -->
+                        <div class="form-group mb-3">
+                            <label asp-for="RoomOwner" class="form-label"></label>
+                            <input asp-for="RoomOwner" class="form-control" placeholder="Enter room owner" />
+                            <span asp-validation-for="RoomOwner" class="text-danger"></span>
+                        </div>
+
+                        <!-- Is Active -->
+                        <div class="form-check mb-3">
+                            <input asp-for="IsActive" class="form-check-input" type="checkbox" />
+                            <label asp-for="IsActive" class="form-check-label">Is Active</label>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="form-group mb-3">
+                            <label asp-for="Description" class="form-label"></label>
+                            <textarea asp-for="Description" class="form-control" placeholder="Enter description"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+
+                        <!-- Image -->
+                        <div class="form-group mb-3">
+                            <label asp-for="Images" class="form-label"></label>
+                            <input type="file" multiple asp-for="Images" class="form-control" accept="image/*"/>
+                            <span asp-validation-for="Images" class="text-danger"></span>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary w-100">Create Room</button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="mb-2">
-            <label asp-for="@Model.City" class="form-label"></label>
-            <input asp-for="@Model.City" class="form-control" />
-        </div>
-        <div class="mb-2">
-            <label asp-for="@Model.Description" class="form-label"></label>
-            <input asp-for="@Model.Description" class="form-control" />
-        </div>
-        <div class="mb-2">
-            <label asp-for="@Model.Country" class="form-label"></label>
-            <input asp-for="@Model.Country" class="form-control" />
-        </div>
-        <div class="mb-2">
-            <label asp-for="@Model.Price" class="form-label"></label>
-            <input asp-for="@Model.Price" class="form-control" />
-        </div>
-        <div class="mb-2">
-            <label asp-for="@Model.RoomAddress" class="form-label"></label>
-            <input asp-for="@Model.RoomAddress" class="form-control" />
-        </div>
-        <div class="mb-2">
-            <label asp-for="@Model.RoomOwner" class="form-label"></label>
-            <input asp-for="@Model.RoomOwner" class="form-control" />
-        </div>
-        <div class="mb-2">
-            <label asp-for="@Model.RoomTitle" class="form-label"></label>
-            <input asp-for="@Model.RoomTitle" class="form-control" />
-        </div>
-       
-        <div class="text-center mt-3">
-            <button type="submit" class="btn btn-primary px-4" style="background-color: #007bff; border-color: #007bff;">Submit</button>
-        </div>
-    </form>
+    </div>
 </div>

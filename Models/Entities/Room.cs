@@ -18,5 +18,7 @@
         public RoomType RoomType { get; set; }
 
         public string RoomOwner { get; set; }
+
+        public virtual List<Image> Images { get; set; } = new List<Image>();
     }
 }

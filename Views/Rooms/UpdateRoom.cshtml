@@ -1,0 +1,67 @@
+﻿@model BookingApp.Models.DTOs.RoomDTO
+
+<div class="container my-4 p-3" style="max-width: 600px; background-color: #f8f9fa; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <h4 class="text-center text-primary mb-3">Update Room</h4>
+    <form asp-action="UpdateRoom" method="post">
+        <input type="hidden" asp-for="ID" />
+
+        <div class="mb-3">
+            <label asp-for="RoomTitle" class="form-label"></label>
+            <input asp-for="RoomTitle" class="form-control" />
+            <span asp-validation-for="RoomTitle" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="City" class="form-label"></label>
+            <input asp-for="City" class="form-control" />
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Country" class="form-label"></label>
+            <input asp-for="Country" class="form-control" />
+            <span asp-validation-for="Country" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Price" class="form-label"></label>
+            <input asp-for="Price" type="number" step="0.01" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="RoomOwner" class="form-label"></label>
+            <input asp-for="RoomOwner" class="form-control" />
+            <span asp-validation-for="RoomOwner" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="RoomAddress" class="form-label"></label>
+            <input asp-for="RoomAddress" class="form-control" />
+            <span asp-validation-for="RoomAddress" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="RoomType" class="form-label"></label>
+            <input asp-for="RoomType" class="form-control" />
+            <span asp-validation-for="RoomType" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Rating" class="form-label"></label>
+            <input asp-for="Rating" class="form-control" />
+            <span asp-validation-for="Rating" class="text-danger"></span>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary px-4">Save</button>
+            <a asp-action="Index" class="btn btn-secondary px-4">Cancel</a>
+        </div>
+    </form>
+</div>
