@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 var connectionString = builder.Configuration.GetConnectionString("ApplicationContext");
-builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseMySQL(connectionString));
+builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddScoped<IRoomRepository, RoomRepository>();
 var app = builder.Build();
 // Add services to the container.

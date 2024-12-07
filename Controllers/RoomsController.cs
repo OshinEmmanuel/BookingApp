@@ -3,6 +3,7 @@ using BookingApp.Models.DTOs;
 using BookingApp.Models.Entities;
 using BookingApp.Models.Helpers;
 using BookingApp.Models.Repositories.Interfaces;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookingApp.Controllers
@@ -10,10 +11,12 @@ namespace BookingApp.Controllers
     public class RoomsController : Controller
     {
         private readonly IRoomRepository _roomRepository;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public RoomsController(IRoomRepository roomRepository)
+        public RoomsController(IRoomRepository roomRepository, IWebHostEnvironment webHostEnvironment)
         {
             _roomRepository = roomRepository;
+            _webHostEnvironment = webHostEnvironment;
         }
         public IActionResult Index()
         {
@@ -52,10 +55,21 @@ namespace BookingApp.Controllers
             List<Image> images = new List<Image>();
             foreach (var image in model.Images)
             {
-                var roomImage = ImageHelper.UploadImageAsync(image, "rooms", image.FileName);
+                //creating a directory to save the file. this will create a folder in the wwwroot
+                string roomDirectory = Path.Combine(_webHostEnvironment.WebRootPath, "rooms");
+                Directory.CreateDirectory(roomDirectory);
+
+                string contentType = image.ContentType.Split('/')[1];
+                string fileName = $"{Guid.NewGuid()}.{contentType}";
+                string fullPath = Path.Combine(roomDirectory, fileName);
+                using (var fileStream = new FileStream(fullPath, FileMode.Create))
+                {
+                    image.CopyTo(fileStream);
+                }
+
                 var img = new Image
                 {
-                    Url = $"imgs/rooms/{image.FileName}",
+                    Url = $"rooms/{fileName}",
                     RoomID = room.ID,
                 };
                 images.Add(img);

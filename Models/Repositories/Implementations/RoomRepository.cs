@@ -36,7 +36,7 @@ namespace BookingApp.Models.Repositories.Implementations
 
         public Room GetRoom(int id)
         {
-            var room = _dbContext.Rooms.FirstOrDefault(s => s.ID == id);
+            var room = _dbContext.Rooms.Include(r => r.Images).FirstOrDefault(s => s.ID == id);
             return room;
         }
 

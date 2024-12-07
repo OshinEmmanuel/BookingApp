@@ -8,38 +8,44 @@
             <a asp-action="AddRoom" class="my-btn btn-dark-green">Add Room</a>
         </div>
 
-        <div class="table-wraper">
-            <table class="table table-hover table-bordered mb-3 table-for-wraper">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Title</th>
-                        <th>Address</th>
-                        <th>Owner</th>
-                        <th>Price</th>
-                        <th>Rating</th>
-                        <th>Operations</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var r in Model)
-                    {
+        @if(Model.Count > 0)
+        {
+            <div class="table-wraper">
+                <table class="table table-hover table-bordered mb-3 table-for-wraper">
+                    <thead>
                         <tr>
-                            <td>@r.ID</td>
-                            <td>@r.RoomTitle</td>
-                            <td>@r.RoomAddress</td>
-                            <td>@r.RoomOwner</td>
-                            <td>@r.Price</td>
-                            <td>@r.Rating</td>
-                            <td>
-                                <a asp-action="GetRoom" asp-route-id="@r.ID" class="btn btn-info">Get Room</a>
-                                <a asp-action="DeleteRoom" asp-route-id="@r.ID" class="btn btn-danger">Delete</a>
-                                <a asp-action="UpdateRoom" asp-route-id="@r.ID" class="btn btn-light">Update</a>
-                            </td>
+                            <th>Id</th>
+                            <th>Title</th>
+                            <th>Address</th>
+                            <th>Owner</th>
+                            <th>Price</th>
+                            <th>Rating</th>
+                            <th>Operations</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                        @foreach (var r in Model)
+                        {
+                            <tr>
+                                <td>@r.ID</td>
+                                <td>@r.RoomTitle</td>
+                                <td>@r.RoomAddress</td>
+                                <td>@r.RoomOwner</td>
+                                <td>@r.Price</td>
+                                <td>@r.Rating</td>
+                                <td>
+                                    <a asp-action="GetRoom" asp-route-id="@r.ID" class="btn btn-info">Get Room</a>
+                                    <a asp-action="DeleteRoom" asp-route-id="@r.ID" class="btn btn-danger">Delete</a>
+                                    <a asp-action="UpdateRoom" asp-route-id="@r.ID" class="btn btn-light">Update</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else{
+            <p>Currently, there is no room</p>
+        }
     </div>
 </div>
